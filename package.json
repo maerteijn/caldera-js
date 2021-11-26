@@ -1,0 +1,61 @@
+{
+  "name": "caldera-js",
+  "version": "0.0.1",
+  "description": "Caldera JS, small boilerplate code to use web components efficiently",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maerteijn/caldera-js.git"
+  },
+  "author": "Martijn Jacobs",
+  "type": "module",
+  "license": "MIT",
+  "main": "demo/main.js",
+  "scripts": {
+    "dev": "webpack serve --mode=development --port 1234",
+    "build": "webpack --mode production",
+    "test": "mocha -r tests/setup_dom.js tests/",
+    "eslint": "eslint src/ tests/ demo/ --ext .js",
+    "eslint:fix": "eslint src/ tests/ demo/ --ext .js --fix",
+    "prettier": "prettier --check '{tests,src,demo}/**/*.js'",
+    "prettier:fix": "prettier --write '{tests,src,demo}/**/*.js'"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^8.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jsdom": "^18.0.1",
+    "mocha": "~9",
+    "prettier": "^2.4.1",
+    "webpack": "~5",
+    "webpack-cli": "~4",
+    "webpack-dev-server": "~4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "browser": true,
+      "mocha": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }],
+      "no-console": "off"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "arrowParens": "avoid"
+  }
+}
