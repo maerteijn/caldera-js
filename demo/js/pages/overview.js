@@ -1,6 +1,8 @@
 import Component from "../../../src/component.js"
 
 class Overview extends Component {
+  static tagName = "page-overview"
+
   renderTemplate(props = {}) {
     return `
       <div>Overview page</div>

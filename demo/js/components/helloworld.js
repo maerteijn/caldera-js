@@ -1,9 +1,11 @@
 import Component from "../../../src/component.js"
 
 class HelloWorld extends Component {
+  static tagName = "hello-world"
+
   renderTemplate(props = {}) {
     return `
-      <h1>Hello <span></span></h1>
+      <h1>Hello <span>Default value</span></h1>
       `
   }
 
