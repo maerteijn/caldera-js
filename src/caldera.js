@@ -40,6 +40,12 @@ class Caldera {
     customElements.define(component.tagName, component)
   }
 
+  static definedAll() {
+    const promises = Caldera.components.map(
+      component => customElements.whenDefined(component.tagName)
+    )
+    return Promise.all(promises)
+  }
 }
 
 export default Caldera
