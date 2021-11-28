@@ -2,17 +2,16 @@ class Caldera {
   static components = []
   static state = {}
 
-  static createReactiveStae() {
+  static createReactiveStae(initial) {
     return new Proxy(
-      {},
+      initial,
       {
         set(state, key, value) {
           const oldState = { ...state }
           state[key] = value
 
-          const elements = document.querySelectorAll(
-            Caldera.components.join(",")
-          )
+          const tagNames = Caldera.components.map(component => component.tagName)
+          const elements = document.querySelectorAll(tagNames.join(","))
           elements.forEach(element => {
             element.update(state, oldState)
           })
@@ -23,14 +22,20 @@ class Caldera {
   }
 
   static setInitalState(initial = {}) {
-    Caldera.state = Caldera.createReactiveStae({})
-    Object.keys(initial).forEach(key => (this.state[key] = initial[key]))
+    return new Promise((resolve, reject) => {
+      Caldera.state = Caldera.createReactiveStae(initial)
+      resolve()
+    })
   }
 
-  static registerComponent(tagname, component) {
-    Caldera.components.push(tagname)
-    customElements.define(tagname, component)
+  static registerComponent(component) {
+    if (component.tagName === undefined) {
+      throw `Please define a static property tagName on component ${component.localName}`
+    }
+    Caldera.components.push(component)
+    customElements.define(component.tagName, component)
   }
+
 }
 
 export default Caldera
