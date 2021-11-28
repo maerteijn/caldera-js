@@ -2,32 +2,29 @@ class Caldera {
   static components = []
   static state = {}
 
-  static createReactiveStae(initial) {
-    return new Proxy(
-      initial,
-      {
-        set(state, key, value) {
-          const oldState = { ...state }
-          state[key] = value
+  static createReactiveState(initial) {
+    return new Proxy(initial, {
+      set(state, key, value) {
+        const oldState = { ...state }
+        state[key] = value
 
-          const tagNames = Caldera.components.map(component => component.tagName)
-          const elements = document.querySelectorAll(tagNames.join(","))
-          elements.forEach(element => {
-            element.update(state, oldState)
-          })
-          return true
-        }
-      }
-    )
+        const tagNames = Caldera.components.map(component => component.tagName)
+        const elements = document.querySelectorAll(tagNames.join(","))
+        elements.forEach(element => {
+          element.update(state, oldState)
+        })
+        return true
+      },
+    })
   }
 
-  static triggerUpdate(component){
+  static triggerUpdate(component) {
     component.update(Caldera.state, {})
   }
 
   static setInitalState(initial = {}) {
     return new Promise((resolve, reject) => {
-      Caldera.state = Caldera.createReactiveStae(initial)
+      Caldera.state = Caldera.createReactiveState(initial)
       resolve()
     })
   }
@@ -41,8 +38,8 @@ class Caldera {
   }
 
   static definedAll() {
-    const promises = Caldera.components.map(
-      component => customElements.whenDefined(component.tagName)
+    const promises = Caldera.components.map(component =>
+      customElements.whenDefined(component.tagName)
     )
     return Promise.all(promises)
   }
