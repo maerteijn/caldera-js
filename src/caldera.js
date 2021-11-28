@@ -21,6 +21,10 @@ class Caldera {
     )
   }
 
+  static triggerUpdate(component){
+    component.update(Caldera.state, {})
+  }
+
   static setInitalState(initial = {}) {
     return new Promise((resolve, reject) => {
       Caldera.state = Caldera.createReactiveStae(initial)

@@ -1,8 +1,11 @@
+import Caldera from "./caldera.js"
+
 class Component extends HTMLElement {
   constructor() {
     super()
     this.stateId = this.getAttribute("state-id")
   }
+
   renderTemplate(props = {}) {
     return `
       <div>
@@ -15,6 +18,7 @@ class Component extends HTMLElement {
   connectedCallback() {
     console.log(`${this.constructor.name} connected`)
     this.innerHTML = this.renderTemplate(this.props)
+    Caldera.triggerUpdate(this)
   }
 
   disconnectedCallback() {
