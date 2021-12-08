@@ -1,2 +1,2 @@
 # caldera-js
-Caldera JS, small boilerplate code to use web components efficiently
+Caldera JS, small boilerplate code to use all the builtin functionality modern webbrowsers provide
