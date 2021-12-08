@@ -37,11 +37,15 @@ class Caldera {
     customElements.define(component.tagName, component)
   }
 
-  static definedAll() {
+  static ready() {
+    const documentReady = new Promise(resolve => {
+      document.addEventListener("DOMContentLoaded", resolve)
+    })
+
     const promises = Caldera.components.map(component =>
       customElements.whenDefined(component.tagName)
     )
-    return Promise.all(promises)
+    return Promise.all([...promises, documentReady])
   }
 }
 
