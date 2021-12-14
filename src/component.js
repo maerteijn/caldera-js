@@ -3,10 +3,10 @@ import Caldera from "./caldera.js"
 class Component extends HTMLElement {
   constructor() {
     super()
-    this.stateId = this.getAttribute("state-id")
+    this.statePath = this.getAttribute("state-path")
   }
 
-  renderTemplate(props = {}) {
+  renderTemplate() {
     return `
       <div>
         <pre>Called from the ${this.constructor.name} class</pre>
@@ -17,7 +17,7 @@ class Component extends HTMLElement {
 
   connectedCallback() {
     console.log(`${this.constructor.name} connected`)
-    this.innerHTML = this.renderTemplate(this.props)
+    this.innerHTML = this.renderTemplate()
     Caldera.triggerUpdate(this)
   }
 

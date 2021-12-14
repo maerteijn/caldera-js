@@ -3,7 +3,7 @@ import Component from "../../../src/component.js"
 class Overview extends Component {
   static tagName = "page-overview"
 
-  renderTemplate(props = {}) {
+  renderTemplate() {
     return `
       <div>Overview page</div>
       `

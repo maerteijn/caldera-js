@@ -12,7 +12,7 @@ Caldera.ready().then(() => {
   // TODO add the simple router here from https://github.com/praveen-me/simple-vanila-router/blob/master/app.js
   // to select the right page
   const appElement = document.querySelector("div#app")
-  appElement.innerHTML = `<hello-world state-id="name"></hello-world>`
+  appElement.innerHTML = `<hello-world state-path="name"></hello-world>`
 })
 
 // these are here for debugging purposes
