@@ -1,8 +1,14 @@
 import Caldera from "./caldera.js"
 
 class Component extends HTMLElement {
-  constructor() {
+  props = {}
+  router = undefined
+
+  constructor(props = {}, router = undefined) {
     super()
+    console.log(`constructor of ${this}`)
+    this.props = props
+    this.router = router
     this.statePath = this.getAttribute("state-path")
   }
 

@@ -5,7 +5,8 @@ class Overview extends Component {
 
   renderTemplate() {
     return `
-      <div>Overview page</div>
+      <div>Overview page: ${this.props.id}</div>
+      <a href="${this.router.reverse("detail", { id: 1 })}">Click me</a>
       `
   }
 
