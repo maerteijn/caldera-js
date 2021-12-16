@@ -98,7 +98,7 @@ class Router {
 
   reverse(name, params) {
     const route = this.routes.find(route => route.name == name)
-    return route.reverse(params)
+    return this.buildLocation(route.reverse(params))
   }
 
   findRouteByPath(path) {
