@@ -18,7 +18,6 @@ Caldera.ready().then(() => {
   const router = new Router(routes, "hash", appElement)
 
   // go to the initial route
-  console.log(`current path: ${router.currentPath}`)
   router.navigateTo(router.currentPath || router.defaultPath)
 
   // these are here for debugging purposes

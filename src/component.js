@@ -6,7 +6,6 @@ class Component extends HTMLElement {
 
   constructor(props = {}, router = undefined) {
     super()
-    console.log(`constructor of ${this}`)
     this.props = props
     this.router = router
     this.statePath = this.getAttribute("state-path")
@@ -22,14 +21,11 @@ class Component extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log(`${this.constructor.name} connected`)
     this.innerHTML = this.renderTemplate()
     Caldera.triggerUpdate(this)
   }
 
-  disconnectedCallback() {
-    console.log(`${this.constructor.name} disconnected`)
-  }
+  disconnectedCallback() {}
 
   update(state, oldState) {
     throw "Please implement an update method"

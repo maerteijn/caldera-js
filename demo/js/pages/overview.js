@@ -11,7 +11,9 @@ class Overview extends Component {
   }
 
   update(state, oldState) {
-    console.log(`update called for ${this.constructor.name} with data ${state}`)
+    console.debug(
+      `update called for ${this.constructor.name} with data ${state}`
+    )
   }
 }
 
