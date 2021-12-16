@@ -11,7 +11,7 @@ class Route {
     // convert the easy to read /detail/:id syntax to a regular expression
     // so we can easily match routes
     this.regex = new RegExp(
-      `^${path.replaceAll(/:([^\s/]+)/g, "(?<$1>[\\w-_]+)")}\/?$`
+      `^${path.replaceAll(/:([^\s/]+)/g, "(?<$1>[\\w-_]+)")}/?$`
     )
     this.component = component
   }
