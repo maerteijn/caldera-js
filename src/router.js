@@ -4,8 +4,7 @@ class Route {
   path = undefined
   component = undefined
 
-  constructor(router, name, path, component) {
-    this.router = router
+  constructor({ name, path, component, router }) {
     this.name = name
     this.path = path
     // convert the easy to read /detail/:id syntax to a regular expression
@@ -14,6 +13,7 @@ class Route {
       `^${path.replaceAll(/:([^\s/]+)/g, "(?<$1>[\\w-_]+)")}/?$`
     )
     this.component = component
+    this.router = router
   }
 
   match(path) {
@@ -21,11 +21,8 @@ class Route {
   }
 
   params(path) {
-    return (path && this.match(path).groups) || {}
-  }
-
-  initComponent(path) {
-    return new this.component(this.params(path), this.router)
+    const match = path && this.match(path)
+    return (match && match.groups) || {}
   }
 
   render(path) {
@@ -58,9 +55,7 @@ class Router {
   element = undefined
 
   constructor(initial = [], mode = "hash", element = undefined) {
-    this.routes = initial.map(
-      entry => new Route(this, entry.name, entry.path, entry.component)
-    )
+    this.routes = initial.map(entry => new Route({ ...entry, router: this }))
     this.mode = mode
     this.element = element
 
@@ -119,3 +114,4 @@ class Router {
 }
 
 export default Router
+export { Route as Route }

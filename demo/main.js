@@ -2,7 +2,6 @@ import Caldera from "../src/caldera.js"
 import Router from "../src/router.js"
 
 import HelloWorld from "./js/components/helloworld.js"
-
 import Overview from "./js/pages/overview.js"
 
 import routes from "./routes"
@@ -14,7 +13,6 @@ Caldera.setInitalState({ name: "My Name" })
 
 Caldera.ready().then(() => {
   const appElement = document.querySelector("div#app")
-
   const router = new Router(routes, "hash", appElement)
 
   // go to the initial route
