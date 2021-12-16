@@ -1,2 +1,11 @@
 # caldera-js
-Caldera JS, small boilerplate code to use all the builtin functionality modern webbrowsers provide
+Caldera JS, a small web component SPA micro framework.
+
+
+
+Inspired on the work of:
+- https://github.com/praveen-me/simple-vanila-router/
+
+
+
+
